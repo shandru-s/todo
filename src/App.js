@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import List from './List';
+
 
 function App() {
+
+  const[words,setWords]=useState()
+  const[datas, setDatas]=useState([])
+
+  const handleAdd = ()=>{
+    if(words){
+      setDatas([...datas,words])
+      setWords("")
+    }
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="text-center" >
+      
+      <h1 className="text-6xl m-4 font-serif">ToDo List</h1>
+      <div>
+        <input type="text" placeholder="Enter the task"  className="input input-bordered input-accent w-full max-w-xs" value={words} onChange={(e)=>setWords(e.target.value)}></input>
+        <button className="btn btn-info m-2" onClick={handleAdd}>Add</button>
+      </div>
+        
+        <List datas={datas} setDatas={setDatas}/>
+
     </div>
   );
 }
