@@ -5,6 +5,7 @@ const List = ({datas, setDatas}) => {
   const handledelete = (index) => {
     const update= datas.filter((data,ind) => ind!==index);
     setDatas(update);
+    localStorage.setItem("task", JSON.stringify(update))
   };
 
   const render = datas.map((data,index)=>{
